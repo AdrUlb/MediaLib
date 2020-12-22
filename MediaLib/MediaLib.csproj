@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Platforms>x64;x86</Platforms>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\external\ManagedSDL2\ManagedSDL2\ManagedSDL2.csproj" />
+	</ItemGroup>
+
+</Project>
