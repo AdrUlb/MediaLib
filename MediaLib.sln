@@ -3,9 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaLib", "MediaLib\MediaLib.csproj", "{156EDB73-4A56-485D-B400-9ED31688E976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaLib", "MediaLib\MediaLib.csproj", "{156EDB73-4A56-485D-B400-9ED31688E976}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2", "external\ManagedSDL2\ManagedSDL2\ManagedSDL2.csproj", "{A7163750-968A-4022-AF64-C9C95ACBFA7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ManagedSDL2.Native", "ManagedSDL2.Native", "{74121F0F-1EE7-4AF0-8794-1D2DBBB47105}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Linux.X64", "external\ManagedSDL2\ManagedSDL2.Native.Linux.X64\ManagedSDL2.Native.Linux.X64.csproj", "{A9F7FC70-4907-4666-B4DD-733135F7EB87}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Linux.X86", "external\ManagedSDL2\ManagedSDL2.Native.Linux.X86\ManagedSDL2.Native.Linux.X86.csproj", "{3F975532-9979-4C44-AB4B-16213E4C0852}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Windows.X64", "external\ManagedSDL2\ManagedSDL2.Native.Windows.X64\ManagedSDL2.Native.Windows.X64.csproj", "{526E88F4-EC26-477B-82A7-57AAF5F5C6F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Windows.X86", "external\ManagedSDL2\ManagedSDL2.Native.Windows.X86\ManagedSDL2.Native.Windows.X86.csproj", "{0BA92173-92FA-4C91-A5ED-3791388F0343}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,9 +41,39 @@ Global
 		{A7163750-968A-4022-AF64-C9C95ACBFA7C}.Release|x64.Build.0 = Release|x64
 		{A7163750-968A-4022-AF64-C9C95ACBFA7C}.Release|x86.ActiveCfg = Release|x86
 		{A7163750-968A-4022-AF64-C9C95ACBFA7C}.Release|x86.Build.0 = Release|x86
+		{A9F7FC70-4907-4666-B4DD-733135F7EB87}.Debug|x64.ActiveCfg = Debug|x64
+		{A9F7FC70-4907-4666-B4DD-733135F7EB87}.Debug|x64.Build.0 = Debug|x64
+		{A9F7FC70-4907-4666-B4DD-733135F7EB87}.Debug|x86.ActiveCfg = Debug|x64
+		{A9F7FC70-4907-4666-B4DD-733135F7EB87}.Release|x64.ActiveCfg = Release|x64
+		{A9F7FC70-4907-4666-B4DD-733135F7EB87}.Release|x64.Build.0 = Release|x64
+		{A9F7FC70-4907-4666-B4DD-733135F7EB87}.Release|x86.ActiveCfg = Release|x64
+		{3F975532-9979-4C44-AB4B-16213E4C0852}.Debug|x64.ActiveCfg = Debug|x86
+		{3F975532-9979-4C44-AB4B-16213E4C0852}.Debug|x86.ActiveCfg = Debug|x86
+		{3F975532-9979-4C44-AB4B-16213E4C0852}.Debug|x86.Build.0 = Debug|x86
+		{3F975532-9979-4C44-AB4B-16213E4C0852}.Release|x64.ActiveCfg = Release|x86
+		{3F975532-9979-4C44-AB4B-16213E4C0852}.Release|x86.ActiveCfg = Release|x86
+		{3F975532-9979-4C44-AB4B-16213E4C0852}.Release|x86.Build.0 = Release|x86
+		{526E88F4-EC26-477B-82A7-57AAF5F5C6F8}.Debug|x64.ActiveCfg = Debug|x64
+		{526E88F4-EC26-477B-82A7-57AAF5F5C6F8}.Debug|x64.Build.0 = Debug|x64
+		{526E88F4-EC26-477B-82A7-57AAF5F5C6F8}.Debug|x86.ActiveCfg = Debug|x64
+		{526E88F4-EC26-477B-82A7-57AAF5F5C6F8}.Release|x64.ActiveCfg = Release|x64
+		{526E88F4-EC26-477B-82A7-57AAF5F5C6F8}.Release|x64.Build.0 = Release|x64
+		{526E88F4-EC26-477B-82A7-57AAF5F5C6F8}.Release|x86.ActiveCfg = Release|x64
+		{0BA92173-92FA-4C91-A5ED-3791388F0343}.Debug|x64.ActiveCfg = Debug|x86
+		{0BA92173-92FA-4C91-A5ED-3791388F0343}.Debug|x86.ActiveCfg = Debug|x86
+		{0BA92173-92FA-4C91-A5ED-3791388F0343}.Debug|x86.Build.0 = Debug|x86
+		{0BA92173-92FA-4C91-A5ED-3791388F0343}.Release|x64.ActiveCfg = Release|x86
+		{0BA92173-92FA-4C91-A5ED-3791388F0343}.Release|x86.ActiveCfg = Release|x86
+		{0BA92173-92FA-4C91-A5ED-3791388F0343}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A9F7FC70-4907-4666-B4DD-733135F7EB87} = {74121F0F-1EE7-4AF0-8794-1D2DBBB47105}
+		{3F975532-9979-4C44-AB4B-16213E4C0852} = {74121F0F-1EE7-4AF0-8794-1D2DBBB47105}
+		{526E88F4-EC26-477B-82A7-57AAF5F5C6F8} = {74121F0F-1EE7-4AF0-8794-1D2DBBB47105}
+		{0BA92173-92FA-4C91-A5ED-3791388F0343} = {74121F0F-1EE7-4AF0-8794-1D2DBBB47105}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D166766-6AA8-40FA-A176-CEE5417E6CE3}

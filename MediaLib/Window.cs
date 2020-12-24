@@ -1,24 +1,109 @@
 ﻿using ManagedSDL2;
 using System;
+using System.ComponentModel;
 
 namespace MediaLib
 {
-	public class Window
+	public class Window : Element, IDisposable
 	{
-		SDLWindow sdlWindow;
+		public readonly App App;
 
-		public Window()
+		SDL.Window sdlWindow;
+
+		bool open = false;
+
+		public override int X { get => sdlWindow.Position.X; set => sdlWindow.Position = (value, Y); }
+		public override int Y { get => sdlWindow.Position.Y; set => sdlWindow.Position = (X, value); }
+		public override int Width { get => sdlWindow.Size.Width; set => sdlWindow.Size = (value, Height); }
+		public override int Height { get => sdlWindow.Size.Height; set => sdlWindow.Size = (Width, value); }
+
+		public class ClosingEventArgs : CancelEventArgs
 		{
-			SDL.Init(SDLInitFlags.Video);
-			sdlWindow = new SDLWindow("", SDL.WindowPosUndefined, SDL.WindowPosUndefined, 400, 400, true);
+			public ClosingEventArgs() : base(false) { }
 		}
 
-		~Window() => Dispose();
+		public delegate void ClosingEventHandler(ClosingEventArgs e);
 
-		private void Dispose()
+		public event ClosingEventHandler? Closing;
+
+		protected virtual void OnClosing(ClosingEventArgs e) { }
+
+		internal void HandleClosing()
 		{
-			Console.WriteLine("hi");
-			GC.SuppressFinalize(this);
+			var e = new ClosingEventArgs();
+
+			Closing?.Invoke(e);
+
+			if (e.Cancel)
+				return;
+
+			OnClosing(e);
+
+			if (e.Cancel)
+				return;
+
+			ForceClose();
+		}
+
+		public Window(App app, string title, int width, int height)
+		{
+			App = app;
+
+			try
+			{
+				SDL.Init(SDL.InitFlags.Video);
+				sdlWindow = new SDL.Window(title, SDL.WindowPosUndefined, SDL.WindowPosUndefined, width, height, false);
+			}
+			catch (SDL.ErrorException ex)
+			{
+				Console.WriteLine($"SDL error: {ex.Message}");
+				Environment.Exit(-1);
+			}
+
+			App.RegisterWindow(this);
+
+			sdlWindow.CloseRequested += SdlWindow_CloseRequested;
+		}
+
+		private void SdlWindow_CloseRequested()
+		{
+			Close();
+		}
+
+		public void Open()
+		{
+			if (open)
+				return;
+
+			sdlWindow.Show();
+			open = true;
+
+			App.WindowNowOpen(this);
+		}
+
+		public void Close()
+		{
+			if (!open)
+				return;
+
+			HandleClosing();
+		}
+
+		public void ForceClose()
+		{
+			if (!open)
+				return;
+
+			open = false;
+			App.WindowNowClosed(this);
+			sdlWindow.Hide();
+
+		}
+
+		public void Dispose()
+		{
+			sdlWindow.CloseRequested -= SdlWindow_CloseRequested;
+			App.UnregisterWindow(this);
 			sdlWindow.Dispose();
 		}
 	}
