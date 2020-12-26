@@ -8,7 +8,7 @@ namespace MediaLib
 	{
 		public readonly App App;
 
-		SDL.Window sdlWindow;
+		readonly SDL.Window sdlWindow;
 
 		bool open = false;
 
@@ -102,6 +102,7 @@ namespace MediaLib
 
 		public void Dispose()
 		{
+			GC.SuppressFinalize(this);
 			sdlWindow.CloseRequested -= SdlWindow_CloseRequested;
 			App.UnregisterWindow(this);
 			sdlWindow.Dispose();
