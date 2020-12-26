@@ -56,6 +56,9 @@ namespace MediaLib
 			OnDraw();
 		}
 
-		public virtual void Dispose() { GC.SuppressFinalize(this); }
+		public virtual void Dispose()
+		{
+			GC.SuppressFinalize(this);
+		}
 	}
 }

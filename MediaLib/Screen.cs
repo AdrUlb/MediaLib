@@ -30,6 +30,9 @@ namespace MediaLib
 				element.HandleDraw();
 		}
 
-		public virtual void Dispose() { GC.SuppressFinalize(this); }
+		public virtual void Dispose()
+		{
+			GC.SuppressFinalize(this);
+		}
 	}
 }

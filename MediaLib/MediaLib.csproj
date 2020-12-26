@@ -4,10 +4,13 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<Platforms>x64;x86</Platforms>
 		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\external\ImageLib\ImageLib\ImageLib.csproj" />
+		<ProjectReference Include="..\external\ImageLib\ImageLib\ImageLib.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
 		<ProjectReference Include="..\external\ManagedSDL2\ManagedSDL2\ManagedSDL2.csproj">
 			<PrivateAssets>all</PrivateAssets>
 		</ProjectReference>
