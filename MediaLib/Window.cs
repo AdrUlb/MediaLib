@@ -52,7 +52,7 @@ namespace MediaLib
 			try
 			{
 				SDL.Init(SDL.InitFlags.Video);
-				sdlWindow = new SDL.Window(title, SDL.WindowPosUndefined, SDL.WindowPosUndefined, width, height, false);
+				sdlWindow = new SDL.Window(title, SDL.WindowPos.Undefined, SDL.WindowPos.Undefined, width, height, false);
 			}
 			catch (SDL.ErrorException ex)
 			{

@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Windows.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Windows.X86", "external\ManagedSDL2\ManagedSDL2.Native.Windows.X86\ManagedSDL2.Native.Windows.X86.csproj", "{0BA92173-92FA-4C91-A5ED-3791388F0343}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageLib", "external\ImageLib\ImageLib\ImageLib.csproj", "{D88FE709-FA31-4A28-AA8E-405FC41B882E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -65,6 +67,14 @@ Global
 		{0BA92173-92FA-4C91-A5ED-3791388F0343}.Release|x64.ActiveCfg = Release|x86
 		{0BA92173-92FA-4C91-A5ED-3791388F0343}.Release|x86.ActiveCfg = Release|x86
 		{0BA92173-92FA-4C91-A5ED-3791388F0343}.Release|x86.Build.0 = Release|x86
+		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Debug|x64.ActiveCfg = Debug|x64
+		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Debug|x64.Build.0 = Debug|x64
+		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Debug|x86.ActiveCfg = Debug|x86
+		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Debug|x86.Build.0 = Debug|x86
+		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Release|x64.ActiveCfg = Release|x64
+		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Release|x64.Build.0 = Release|x64
+		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Release|x86.ActiveCfg = Release|x86
+		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
