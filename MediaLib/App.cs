@@ -1,4 +1,5 @@
 ﻿using ManagedSDL2;
+using System;
 using System.Collections.Generic;
 
 namespace MediaLib
@@ -46,9 +47,26 @@ namespace MediaLib
 
 			HandleActivate();
 
+			var lastTime = DateTime.Now;
+
 			while (running)
 			{
 				SDL.ProcessEvents();
+
+				foreach (var win in openWindows)
+				{
+					var thisTime = DateTime.Now;
+					var delta = thisTime - lastTime;
+					lastTime = thisTime;
+
+					win.HandleUpdate(delta);
+
+					win.SdlRenderer.Clear();
+
+					win.HandleDraw();
+
+					win.SdlRenderer.Present();
+				}
 			}
 
 			HandleDeactivate();

@@ -4,18 +4,42 @@ using System.ComponentModel;
 
 namespace MediaLib
 {
-	public class Window : Element, IDisposable
+	public partial class Window : IDisposable
 	{
 		public readonly App App;
 
 		readonly SDL.Window sdlWindow;
+		internal readonly SDL.Renderer SdlRenderer;
 
 		bool open = false;
 
-		public override int X { get => sdlWindow.Position.X; set => sdlWindow.Position = (value, Y); }
-		public override int Y { get => sdlWindow.Position.Y; set => sdlWindow.Position = (X, value); }
-		public override int Width { get => sdlWindow.Size.Width; set => sdlWindow.Size = (value, Height); }
-		public override int Height { get => sdlWindow.Size.Height; set => sdlWindow.Size = (Width, value); }
+		public string Title
+		{
+			get => sdlWindow.Title;
+			set => sdlWindow.Title = value;
+		}
+
+		public int X { get => sdlWindow.Position.X; set => sdlWindow.Position = (value, Y); }
+		public int Y { get => sdlWindow.Position.Y; set => sdlWindow.Position = (X, value); }
+		public int Width { get => sdlWindow.Size.Width; set => sdlWindow.Size = (value, Height); }
+		public int Height { get => sdlWindow.Size.Height; set => sdlWindow.Size = (Width, value); }
+
+		public Screen? screen = null;
+		public Screen? Screen
+		{
+			get => screen;
+
+			set
+			{
+				if (screen != null)
+					screen.Window = null;
+
+				screen = value;
+
+				if (screen != null)
+					screen.Window = this;
+			}
+		}
 
 		public class ClosingEventArgs : CancelEventArgs
 		{
@@ -45,6 +69,16 @@ namespace MediaLib
 			ForceClose();
 		}
 
+		internal void HandleUpdate(TimeSpan delta)
+		{
+			Screen?.HandleUpdate(delta);
+		}
+
+		internal void HandleDraw()
+		{
+			Screen?.HandleDraw();
+		}
+
 		public Window(App app, string title, int width, int height)
 		{
 			App = app;
@@ -53,6 +87,8 @@ namespace MediaLib
 			{
 				SDL.Init(SDL.InitFlags.Video);
 				sdlWindow = new SDL.Window(title, SDL.WindowPos.Undefined, SDL.WindowPos.Undefined, width, height, false);
+				SdlRenderer = new SDL.Renderer(sdlWindow);
+				SdlRenderer.SetDrawBlendMode(SDL.BlendMode.Blend);
 			}
 			catch (SDL.ErrorException ex)
 			{
