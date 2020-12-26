@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Windows.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageLib", "external\ImageLib\ImageLib\ImageLib.csproj", "{D88FE709-FA31-4A28-AA8E-405FC41B882E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaLib.UI", "MediaLib.UI\MediaLib.UI.csproj", "{B48B8075-BEFE-4F9E-ABB6-C49C8DC5F011}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -77,14 +75,6 @@ Global
 		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Release|x64.Build.0 = Release|Any CPU
 		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Release|x86.ActiveCfg = Release|Any CPU
 		{D88FE709-FA31-4A28-AA8E-405FC41B882E}.Release|x86.Build.0 = Release|Any CPU
-		{B48B8075-BEFE-4F9E-ABB6-C49C8DC5F011}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B48B8075-BEFE-4F9E-ABB6-C49C8DC5F011}.Debug|x64.Build.0 = Debug|Any CPU
-		{B48B8075-BEFE-4F9E-ABB6-C49C8DC5F011}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B48B8075-BEFE-4F9E-ABB6-C49C8DC5F011}.Debug|x86.Build.0 = Debug|Any CPU
-		{B48B8075-BEFE-4F9E-ABB6-C49C8DC5F011}.Release|x64.ActiveCfg = Release|Any CPU
-		{B48B8075-BEFE-4F9E-ABB6-C49C8DC5F011}.Release|x64.Build.0 = Release|Any CPU
-		{B48B8075-BEFE-4F9E-ABB6-C49C8DC5F011}.Release|x86.ActiveCfg = Release|Any CPU
-		{B48B8075-BEFE-4F9E-ABB6-C49C8DC5F011}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

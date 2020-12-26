@@ -4,12 +4,12 @@ using System.ComponentModel;
 
 namespace MediaLib
 {
-	public partial class Window : IDisposable
+	public partial class Window : IWindow, IDisposable
 	{
 		public readonly App App;
 
 		readonly SDL.Window sdlWindow;
-		internal readonly SDL.Renderer SdlRenderer;
+		internal SDL.Renderer SdlRenderer { get; }
 
 		bool open = false;
 
@@ -69,7 +69,7 @@ namespace MediaLib
 			ForceClose();
 		}
 
-		internal void HandleUpdate(TimeSpan delta)
+		void IWindow.HandleUpdate(TimeSpan delta)
 		{
 			Screen?.HandleUpdate(delta);
 		}
