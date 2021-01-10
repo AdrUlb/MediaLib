@@ -6,8 +6,8 @@ namespace MediaLib
 {
 	public class App
 	{
-		readonly List<IWindow> existingWindows = new List<IWindow>();
-		readonly List<IWindow> openWindows = new List<IWindow>();
+		readonly List<Window> existingWindows = new List<Window>();
+		readonly List<Window> openWindows = new List<Window>();
 
 		bool running = false;
 

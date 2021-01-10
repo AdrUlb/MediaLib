@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace MediaLib
 {
-	public partial class Window : IWindow, IDisposable
+	public partial class Window : IDisposable
 	{
 		public readonly App App;
 
@@ -69,7 +69,7 @@ namespace MediaLib
 			ForceClose();
 		}
 
-		void IWindow.HandleUpdate(TimeSpan delta)
+		internal void HandleUpdate(TimeSpan delta)
 		{
 			Screen?.HandleUpdate(delta);
 		}
