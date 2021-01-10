@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace MediaLib
 {
@@ -6,12 +7,16 @@ namespace MediaLib
 	{
 		internal Screen? Screen = null;
 		protected internal Window Window => Screen?.Window!;
-		public int X { get; set; } = 0;
-		public int Y { get; set; } = 0;
-		public int Width { get; set; } = 50;
-		public int Height { get; set; } = 50;
+
+		public Rectangle Rect = new Rectangle(0, 0, 50, 50);
+		public int X { get => Rect.X; set => Rect.X = value; }
+		public int Y { get => Rect.Y; set => Rect.Y = value; }
+		public int Width { get => Rect.Width; set => Rect.Width = value; }
+		public int Height { get => Rect.Height; set => Rect.Height = value; }
 
 		private int depth = 0;
+
+		public Color BackgroundColor = SystemColors.Control;
 
 		public class UpdateEventArgs : EventArgs
 		{
@@ -52,6 +57,8 @@ namespace MediaLib
 
 		internal void HandleDraw()
 		{
+			Window.FillRect(BackgroundColor, Rect);
+
 			Draw?.Invoke();
 			OnDraw();
 		}

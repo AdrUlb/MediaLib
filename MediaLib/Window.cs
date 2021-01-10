@@ -24,7 +24,9 @@ namespace MediaLib
 		public int Width { get => sdlWindow.Size.Width; set => sdlWindow.Size = (value, Height); }
 		public int Height { get => sdlWindow.Size.Height; set => sdlWindow.Size = (Width, value); }
 
-		public Screen? screen = null;
+		public bool Resizable { get => sdlWindow.Resizable; set => sdlWindow.Resizable = value; }
+
+		private Screen? screen = null;
 		public Screen? Screen
 		{
 			get => screen;
@@ -135,8 +137,7 @@ namespace MediaLib
 			sdlWindow.Hide();
 
 		}
-
-		public void Dispose()
+		public virtual void Dispose()
 		{
 			GC.SuppressFinalize(this);
 			sdlWindow.CloseRequested -= SdlWindow_CloseRequested;

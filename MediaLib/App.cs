@@ -45,6 +45,9 @@ namespace MediaLib
 		{
 			running = true;
 
+			SDL.Init(SDL.InitFlags.Video);
+			TTF.Init();
+
 			HandleActivate();
 
 			var lastTime = DateTime.Now;
