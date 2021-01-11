@@ -19,15 +19,15 @@ namespace MediaLib
 			this.path = path;
 		}
 
-		public StaticText CreateStaticText(Window window, string text, int size, Color color, bool preferSpeedOverQuality = false)
+		public StaticText CreateStaticText(Window window, string text, int size, Color color, bool preferSpeedOverQuality = false, uint wrapLength = 0)
 		{
 			if (!ttfFonts.ContainsKey(size))
 			{
 				var font = new TTF.Font(path, size);
-				ttfFonts.Add(size, font); 
+				ttfFonts.Add(size, font);
 			}
 
-			return new StaticText(ttfFonts[size].RenderText(window.SdlRenderer, text, color, preferSpeedOverQuality), window.SdlRenderer);
+			return new StaticText(ttfFonts[size].RenderText(window.SdlRenderer, text, color, preferSpeedOverQuality, wrapLength), window.SdlRenderer);
 		}
 
 		public void Dispose()
