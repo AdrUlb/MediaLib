@@ -16,7 +16,7 @@ namespace MediaLib
 
 		private int depth = 0;
 
-		public Color BackgroundColor = SystemColors.Control;
+		public Color BackgroundColor = Color.White;
 
 		public class UpdateEventArgs : EventArgs
 		{
@@ -28,9 +28,13 @@ namespace MediaLib
 			}
 		}
 
+		public delegate void ShowEventHandler();
+		public delegate void HideEventHandler();
 		public delegate void UpdateEventHandler(UpdateEventArgs e);
 		public delegate void DrawEventHandler();
 
+		public event ShowEventHandler? Show;
+		public event HideEventHandler? Hide;
 		public event UpdateEventHandler? Update;
 		public event DrawEventHandler? Draw;
 
@@ -44,6 +48,8 @@ namespace MediaLib
 			}
 		}
 
+		protected virtual void OnShow() { }
+		protected virtual void OnHide() { }
 		protected virtual void OnUpdate(UpdateEventArgs e) { }
 		protected virtual void OnDraw() { }
 
@@ -53,6 +59,18 @@ namespace MediaLib
 
 			Update?.Invoke(e);
 			OnUpdate(e);
+		}
+
+		internal void HandleShow()
+		{
+			Show?.Invoke();
+			OnShow();
+		}
+
+		internal void HandleHide()
+		{
+			Hide?.Invoke();
+			OnHide();
 		}
 
 		internal void HandleDraw()

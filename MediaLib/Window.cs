@@ -34,12 +34,18 @@ namespace MediaLib
 			set
 			{
 				if (screen != null)
+				{
+					screen.HandleHide();
 					screen.Window = null;
+				}
 
 				screen = value;
 
 				if (screen != null)
+				{
 					screen.Window = this;
+					screen.HandleShow();
+				}
 			}
 		}
 

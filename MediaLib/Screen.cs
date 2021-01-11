@@ -11,12 +11,42 @@ namespace MediaLib
 
 		public void AddElement(Element element)
 		{
+			if (element.Screen != null)
+				throw new InvalidOperationException("Can't add element to multiple screens at once");
+
 			elements.Add(element);
 			element.Screen = this;
 			OrderElements();
+
+			if (Window != null)
+				element.HandleShow();
+		}
+
+		public void RemoveElement(Element element)
+		{
+			if (!elements.Contains(element))
+				return;
+
+			if (Window != null)
+				element.HandleHide();
+
+			element.Screen = null;
+			elements.Remove(element);
 		}
 
 		internal void OrderElements() => elements = elements.OrderBy(element => element.Depth).ToList();
+
+		internal void HandleShow()
+		{
+			foreach (var element in elements)
+				element.HandleShow();
+		}
+
+		internal void HandleHide()
+		{
+			foreach (var element in elements)
+				element.HandleHide();
+		}
 
 		internal void HandleUpdate(TimeSpan delta)
 		{
