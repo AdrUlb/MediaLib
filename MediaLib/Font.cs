@@ -19,7 +19,7 @@ namespace MediaLib
 			this.path = path;
 		}
 
-		public StaticText CreateStaticText(Window window, string text, int size, Color color, bool preferSpeedOverQuality = false, uint wrapLength = 0)
+		public StaticText CreateStaticText(Window window, string text, int size, Color color, uint wrapLength = 0)
 		{
 			if (!ttfFonts.ContainsKey(size))
 			{
@@ -27,7 +27,7 @@ namespace MediaLib
 				ttfFonts.Add(size, font);
 			}
 
-			return new StaticText(ttfFonts[size].RenderText(window.SdlRenderer, text, color, preferSpeedOverQuality, wrapLength), window.SdlRenderer);
+			return new StaticText(ttfFonts[size].RenderText(window.SdlRenderer, text, color, false, wrapLength), window.SdlRenderer, text, size, color);
 		}
 
 		public void Dispose()

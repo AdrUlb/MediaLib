@@ -5,6 +5,9 @@ namespace MediaLib
 {
 	interface IText
 	{
-		public void Draw(Rectangle rect);
+		public int Width { get; }
+		public int Height { get; }
+
+		public void Draw(Rectangle? rect = null);
 	}
 }
