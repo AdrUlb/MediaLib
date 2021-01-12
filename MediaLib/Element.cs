@@ -18,6 +18,21 @@ namespace MediaLib
 
 		public Color BackgroundColor = Color.White;
 
+		public class UpdateEventArgs : EventArgs
+		{
+			public readonly TimeSpan Delta;
+
+			public UpdateEventArgs(TimeSpan delta)
+			{
+				Delta = delta;
+			}
+		}
+
+		public delegate void ShowEventHandler();
+		public delegate void HideEventHandler();
+		public delegate void UpdateEventHandler(UpdateEventArgs e);
+		public delegate void DrawEventHandler();
+
 		public event ShowEventHandler? Show;
 		public event HideEventHandler? Hide;
 		public event UpdateEventHandler? Update;
@@ -36,9 +51,14 @@ namespace MediaLib
 		protected virtual void OnShow() { }
 		protected virtual void OnHide() { }
 		protected virtual void OnUpdate(UpdateEventArgs e) { }
-		protected virtual void OnDraw()
+		protected virtual void OnDraw() { }
+
+		internal void HandleUpdate(TimeSpan delta)
 		{
-			Window.FillRect(BackgroundColor, Rect);
+			var e = new UpdateEventArgs(delta);
+
+			Update?.Invoke(e);
+			OnUpdate(e);
 		}
 
 		internal void HandleShow()
@@ -53,14 +73,10 @@ namespace MediaLib
 			OnHide();
 		}
 
-		internal void HandleUpdate(TimeSpan delta, UpdateEventArgs e)
-		{
-			Update?.Invoke(e);
-			OnUpdate(e);
-		}
-
 		internal void HandleDraw()
 		{
+			Window.FillRect(BackgroundColor, Rect);
+
 			Draw?.Invoke();
 			OnDraw();
 		}
