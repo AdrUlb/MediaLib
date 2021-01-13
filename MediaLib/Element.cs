@@ -51,7 +51,10 @@ namespace MediaLib
 		protected virtual void OnShow() { }
 		protected virtual void OnHide() { }
 		protected virtual void OnUpdate(UpdateEventArgs e) { }
-		protected virtual void OnDraw() { }
+		protected virtual void OnDraw()
+		{
+			Window.FillRect(BackgroundColor, Rect);
+		}
 
 		internal void HandleUpdate(TimeSpan delta)
 		{
@@ -75,8 +78,6 @@ namespace MediaLib
 
 		internal void HandleDraw()
 		{
-			Window.FillRect(BackgroundColor, Rect);
-
 			Draw?.Invoke();
 			OnDraw();
 		}
