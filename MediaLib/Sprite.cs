@@ -23,11 +23,11 @@ namespace MediaLib
 		{
 			var texture = new SDL.Texture(renderer, SDL.PixelFormat.RGBA8888, SDL.TextureAccess.Streaming, image.Width, image.Height);
 
-			(var pixelsPtr, var pitch) = texture.Lock();
+			(var pixelPtr, var pitch) = texture.Lock();
 
 			unsafe
 			{
-				var __unsafe__pixelsPtr = (byte*)pixelsPtr.ToPointer();
+				var __unsafe__pixelPtr = new Span<byte>(pixelPtr.ToPointer(), pitch * Height);
 
 				for (var y = 0; y < Height; y++)
 				{
@@ -36,10 +36,10 @@ namespace MediaLib
 						var pixelIndex = x * 4 + y * pitch;
 						var pixel = image[x, y];
 
-						__unsafe__pixelsPtr[pixelIndex] = pixel.A;
-						__unsafe__pixelsPtr[pixelIndex + 1] = pixel.B;
-						__unsafe__pixelsPtr[pixelIndex + 2] = pixel.G;
-						__unsafe__pixelsPtr[pixelIndex + 3] = pixel.R;
+						__unsafe__pixelPtr[pixelIndex] = pixel.A;
+						__unsafe__pixelPtr[pixelIndex + 1] = pixel.B;
+						__unsafe__pixelPtr[pixelIndex + 2] = pixel.G;
+						__unsafe__pixelPtr[pixelIndex + 3] = pixel.R;
 					}
 				}
 			}
