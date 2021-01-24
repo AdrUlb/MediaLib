@@ -8,45 +8,45 @@ namespace MediaLib
 	{
 		SDL.Texture? sdlTexture = null;
 
-		int contentWidth;
-		int contentHeight;
+		int canvasWidth;
+		int canvasHeight;
 
 		IntPtr pixelPtr;
 		int pitch;
 
 		Color[][] buffer;
 
-		public int ContentWidth
+		public int CanvasWidth
 		{
-			get => contentWidth;
+			get => canvasWidth;
 			set
 			{
-				contentWidth = value;
+				canvasWidth = value;
 				if (sdlTexture != null)
 					CreateTexture();
 			}
 		}
 
-		public int ContentHeight
+		public int CanvasHeight
 		{
-			get => contentHeight;
+			get => canvasHeight;
 			set
 			{
-				contentHeight = value;
+				canvasHeight = value;
 				if (sdlTexture != null)
 					CreateTexture();
 			}
 		}
 
-		public PixelRendererElement(int contentWidth, int contentHeight)
+		public PixelRendererElement(int canvasWidth, int canvasHeight)
 		{
-			this.contentWidth = contentWidth;
-			this.contentHeight = contentHeight;
+			this.canvasWidth = canvasWidth;
+			this.canvasHeight = canvasHeight;
 
-			buffer = new Color[contentWidth][];
+			buffer = new Color[canvasWidth][];
 
 			for (var i = 0; i < buffer.Length; i++)
-				buffer[i] = new Color[contentHeight];
+				buffer[i] = new Color[canvasHeight];
 		}
 
 		private void CreateTexture()
@@ -54,10 +54,10 @@ namespace MediaLib
 			if (sdlTexture != null)
 				sdlTexture.Dispose();
 
-			sdlTexture = new SDL.Texture(Window.SdlRenderer, SDL.PixelFormat.RGBA8888, SDL.TextureAccess.Streaming, contentWidth, contentHeight);
+			sdlTexture = new SDL.Texture(Window.SdlRenderer, SDL.PixelFormat.RGBA8888, SDL.TextureAccess.Streaming, canvasWidth, canvasHeight);
 
-			for (var y = 0; y < contentHeight; y++)
-				for (var x = 0; x < contentHeight; x++)
+			for (var y = 0; y < canvasHeight; y++)
+				for (var x = 0; x < canvasWidth; x++)
 					this[x, y] = buffer[x][y];
 		}
 
@@ -83,6 +83,13 @@ namespace MediaLib
 			Window.SdlRenderer.Copy(sdlTexture, null, new Rectangle(0, 0, Width, Height));
 		}
 
+		public void Clear(Color color)
+		{
+			for (var y = 0; y < CanvasHeight; y++)
+				for (var x = 0; x < CanvasWidth; x++)
+					this[x, y] = color;
+		}
+
 		public override void Dispose()
 		{
 			base.Dispose();
@@ -94,7 +101,7 @@ namespace MediaLib
 		{
 			get
 			{
-				if (x < 0 || y < 0 || x >= contentWidth || y >= contentHeight)
+				if (x < 0 || y < 0 || x >= canvasWidth || y >= canvasHeight)
 					throw new IndexOutOfRangeException("Specified coordinates outside of pixel buffer bounds");
 
 				return buffer[x][y];
@@ -102,7 +109,7 @@ namespace MediaLib
 
 			set
 			{
-				if (x < 0 || y < 0 || x >= contentWidth || y >= contentHeight)
+				if (x < 0 || y < 0 || x >= canvasWidth || y >= canvasHeight)
 					throw new IndexOutOfRangeException("Specified coordinates outside of pixel buffer bounds");
 
 				buffer[x][y] = value;
@@ -117,7 +124,7 @@ namespace MediaLib
 
 				unsafe
 				{
-					var __unsafe__pixelPtr = new Span<byte>(pixelPtr.ToPointer(), pitch * contentHeight);
+					var __unsafe__pixelPtr = new Span<byte>(pixelPtr.ToPointer(), pitch * canvasHeight);
 
 					__unsafe__pixelPtr[pixelIndex] = value.A;
 					__unsafe__pixelPtr[pixelIndex + 1] = value.B;
