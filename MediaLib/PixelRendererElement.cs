@@ -90,6 +90,8 @@ namespace MediaLib
 					this[x, y] = color;
 		}
 
+		public void Clear() => Clear(BackgroundColor);
+
 		public override void Dispose()
 		{
 			base.Dispose();
